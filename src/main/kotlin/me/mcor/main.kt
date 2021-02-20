@@ -11,7 +11,7 @@ private const val CLOSE: Char = ')'
 
 fun balanceBrackets(input: String): String {
     val openParenStack = Stack<Int>()
-    val parenPairStack = Stack<Pair<Int, Int>>()
+    val parenPairStack = mutableListOf<Pair<Int, Int>>()
     // fix all the idx of pair
     input.forEachIndexed { i, char ->
         when (char) {
@@ -21,7 +21,7 @@ fun balanceBrackets(input: String): String {
             CLOSE -> {
                 if (!openParenStack.isEmpty()) {
                     val openIdx = openParenStack.pop()
-                    parenPairStack.push(Pair(openIdx, i))
+                    parenPairStack.add(Pair(openIdx, i))
                 }
             }
             else -> {
